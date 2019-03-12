@@ -26,7 +26,7 @@ SECRET_KEY = 'w+p_77&riqh=-i=nr0)nwq)^smk8@2f^p6+jif40who8d=q9$6'
 DEBUG = True
 
 # ALLOWED_HOSTS = ["https://sapiens-1f0c9.firebaseapp.com"]
-ALLOWED_HOSTS = ['ip-172-31-16-112', '127.0.0.1']
+ALLOWED_HOSTS = ['ip-172-31-16-112', '127.0.0.1','ec2-54-191-77-29.us-west-2.compute.amazonaws.com']
 
 # Application definition
 
