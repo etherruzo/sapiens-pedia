@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- banner -->
+<div id="home" class="banner">
+	<div class="banner-agileinfo">
+
+		<div class="banner-main">
+			<div class="container">
+				<div class="col-md-5 banner-left">
+					<img src="{% static 'img/sapiens.png' %}" alt="">
+				</div>
+				<div class="col-md-7 banner-text">
+					<p>Welcome</p>
+					<h2><span>SAPIENS</span>learning lead to evolution</h2>
+					<div class="w3agile_hire_right">
+						<a href="{% url 'sign_up:sign_up' %}" class="wthree-more w3more1 " data-text="sign up">
+							<span>h</span><span>i</span><span>r</span><span>e</span> <span>m</span><span>e</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //banner -->
+
+{% endblock %}
