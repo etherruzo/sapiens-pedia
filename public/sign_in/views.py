@@ -16,7 +16,7 @@ import PIL, PIL.Image
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
-def sign_up(request):
+def sign_in(request):
 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -30,5 +30,5 @@ def sign_up(request):
     else:
         form = UserCreationForm()
     context = {'form': form}
-    template = 'sign_up/sign_up.html'
+    template = 'sign_in/sign_in.html'
     return render(request, template, context)

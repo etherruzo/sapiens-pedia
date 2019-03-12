@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+KEYFILES_DIR = os.path.join(BASE_DIR, 'keyfiles')
+FIREBASE_KEY = 'sapiens-1f0c9-firebase-adminsdk-13qhk-c3c3c2819e.json'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -26,7 +28,7 @@ SECRET_KEY = 'w+p_77&riqh=-i=nr0)nwq)^smk8@2f^p6+jif40who8d=q9$6'
 DEBUG = True
 
 # ALLOWED_HOSTS = ["https://sapiens-1f0c9.firebaseapp.com"]
-ALLOWED_HOSTS = ['ip-172-31-16-112', '127.0.0.1','ec2-54-191-77-29.us-west-2.compute.amazonaws.com']
+ALLOWED_HOSTS = ['ip-172-31-16-112', '127.0.0.1','ec2-18-218-212-136.us-east-2.compute.amazonaws.com']
 
 # Application definition
 
@@ -37,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'firebase_auth',
 
     # my_apps
     'home',
@@ -94,6 +97,10 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('firebase_auth.authentication.FirebaseAuthentication', ),
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
