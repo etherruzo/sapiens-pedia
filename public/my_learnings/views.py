@@ -3,9 +3,9 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import ContactForm
 
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import db,auth
+#import firebase_admin
+#from firebase_admin import credentials
+#from firebase_admin import db,auth
 import datetime
 import time
 import pandas as pd
