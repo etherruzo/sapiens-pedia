@@ -15,20 +15,32 @@ import image
 import PIL, PIL.Image
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+import pyrebase
+
+
+config = {
+    'apiKey': "AIzaSyAN69lck26rovFU924lWgC9NOgjfVpc6cU",
+    'authDomain': "sapiens-1f0c9.firebaseapp.com",
+    'databaseURL': "https://sapiens-1f0c9.firebaseio.com",
+    'projectId': "sapiens-1f0c9",
+    'storageBucket': "sapiens-1f0c9.appspot.com",
+    'messagingSenderId': "942647312753"
+  }
+
+#cred = credentials.Certificate('../../sapiens-1f0c9-firebase-adminsdk-13qhk-c3c3c2819e.json')
+default_app = pyrebase.initialize_app(config)#,options={'databaseURL': 'https://sapiens-1f0c9.firebaseio.com/'})
+#default_app = firebase_admin.initialize_app(cred,options={'databaseURL': 'https://sapiens-1f0c9.firebaseio.com/'})
+auth=default_app.auth()
 
 def sign_up(request):
 
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = auth.create_user(email=username,password=raw_password)
-            #return HttpResponse('Succesfully created user')
-            return redirect('home')
-    else:
-        form = UserCreationForm()
-    context = {'form': form}
-    template = 'sign_up/sign_up.html'
-    return render(request, template, context)
+    return render(request,"sign_up/sign_up.html")
+
+def postsignup(request):
+    name=request.POST.get('name')
+    email=request.POST.get('email')
+    passw=request.POST.get('pass')
+    user=auth.create_user_with_email_and_password(email,passw)
+
+
+    return render(request,"sign_in/sign_in.html")

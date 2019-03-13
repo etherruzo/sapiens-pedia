@@ -4,10 +4,21 @@
 
 {% block content %}
 
-  <h2>Sign up</h2>
-  <form method="post">
+{% if messg %}
+<script>
+    alert('{{ messg }}');
+</script>
+{% endif %}
+
+<form action="postsignup" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-  </form>
+    Name:
+    <input type="text" name="name"><br><br>
+    Email :
+    <input type="email" name="email"><br><br>
+    Password:
+    <input type="password" name="pass"><br><br>
+    <input type="submit" value="sign_up">
+</form>
+
 {% endblock %}

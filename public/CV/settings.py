@@ -39,12 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'firebase_auth',
+    #'firebase_auth',
 
     # my_apps
     'home',
     'about_me',
     'contact_me',
+    'sign_in',
     'sign_up',
     'experience',
     'my_education',

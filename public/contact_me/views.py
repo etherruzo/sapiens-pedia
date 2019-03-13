@@ -15,6 +15,7 @@ import image
 import PIL, PIL.Image
 
 
+
 def get_db_data(user,root):
     root = db.reference()
     def get_df(u):
@@ -44,10 +45,10 @@ def render_stats(df):
 def uploadData(learning_1,tag1,learning_2,tag2,learning_3,tag3):
     try:
         #user=request.user
-        user_name="etomasherruzo@gmail.com"
+        #user_name="etomasherruzo@gmail.com"
         #cred = credentials.Certificate('../sapiens-1f0c9-firebase-adminsdk-13qhk-c3c3c2819e.json')
         #default_app = firebase_admin.initialize_app(cred,options={                    'databaseURL': 'https://sapiens-1f0c9.firebaseio.com/'})
-        user = auth.get_user_by_email(user_name)
+        #user = auth.get_user_by_email(user_name)
         print('Successfully fetched user data: {0}'.format(user.uid))
         root = db.reference()
 

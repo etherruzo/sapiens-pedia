@@ -1,13 +1,31 @@
+
 {% extends 'base.html' %}
 
 {% block title %}Sign in{% endblock %}
 
 {% block content %}
 
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign in</button>
-  </form>
+
+{% if messg %}
+<script>
+    alert('{{ messg }}');
+</script>
+{% endif %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sign</title>
+</head>
+<body>
+<form action="postsign" method="post">
+{% csrf_token %}
+Email :
+<input type="email" name="email"><br><br>
+Password:
+<input type="password" name="pass"><br><br>
+<input type="submit" value="sign_in">
+</form>
+</body>
+</html>
+
 {% endblock %}
