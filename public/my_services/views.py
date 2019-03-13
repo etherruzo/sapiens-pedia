@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import image
 import PIL, PIL.Image
+from django.http import HttpResponse
 
 config = {
     'apiKey': "AIzaSyAN69lck26rovFU924lWgC9NOgjfVpc6cU",
@@ -31,13 +32,27 @@ def getUser(req):
     a = a['localId']
     return a
 
+
 def getUserUp(req):
     idtoken= req.session['uid']
     a = auth.get_account_info(idtoken)
+    a = a['users']
+    a = a[0]
+    a = a['localId']
     return a,idtoken
 
 
 def my_services(request):
+    a,idtoken=getUserUp(request)
+    df_data=get_db_data(a,idtoken)
+    render_stats(df_data)
+    context = {}
+    template = 'my_services/my_services.html'
+    return render(request, template, context)
+
+
+
+def my_services1(request):
     try:
         user,token=getUserUp(request)
         df_data=get_db_data(user,token,database)
@@ -49,10 +64,11 @@ def my_services(request):
         return render(request,"my_services/error.html")
 
 
-def get_db_data(a,token,db):
-    local_id=auth.get_account_info(token)['users'][0]['localId']
-    dic_all=db.child('users').child(local_id).get(token)
-    df=pd.DataFrame.from_dict(dic_all.val(),orient='index')
+def get_db_data(local_id,token):
+    dic_all=database.child('users').child(local_id).get(token)
+    #df=pd.DataFrame.from_dict(dic_all.val(),orient='index')
+    df0=pd.DataFrame(dic_all.val())
+    df=df0.transpose()[['learning','tag']]
     grouped=df.groupby('tag').count()
     return grouped
 

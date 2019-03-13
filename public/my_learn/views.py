@@ -37,12 +37,75 @@ def getUser(req):
     a = a['localId']
     return a
 
-#def my_learn(request):
-#    return render(request,"my_learn/my_learn.html")
+
+def getUserUp(req):
+    idtoken= req.session['uid']
+    a = auth.get_account_info(idtoken)
+    a = a['users']
+    a = a[0]
+    a = a['localId']
+    return a,idtoken
+
+def my_learn2(request):
+    user,token=getUserUp(request)
+    public1=request.POST.get("public1")
+    public2=request.POST.get("public2")
+    public3=request.POST.get("public3")
+    tag1=request.POST.get("tag1")
+    tag2=request.POST.get("tag2")
+    tag3=request.POST.get("tag2")
+    learning_1=request.POST.get("learning_1")
+    learning_2=request.POST.get("learning_2")
+    learning_3=request.POST.get("learning_3")
+    uploadData(user,token,"learning_1","tag1","public1","learning_2","public2","tag2","learning_3","tag3","public3")
+    try:
+        return redirect('my_services:my_services')
+
+    except BadHeaderError:
+        return HttpResponse('Invalid header found. ')
+            #return redirect('contact_me:email_success')
+
+    context = {'form': form}
+    template = 'my_learn/my_learn.html'
+    return render(request, template, context)
 
 def my_learn(request):
+
+    user,token=getUserUp(request)
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            public1 = "1"#form.cleaned_data['public1']
+            public2 = "2"#form.cleaned_data['public2']
+            public3 = "3"#form.cleaned_data['public3']
+            tag1 = form.cleaned_data['tag1']
+            tag2 = form.cleaned_data['tag2']
+            tag3 = form.cleaned_data['tag3']
+            learning_1 = form.cleaned_data['learning_1']
+            learning_2 = form.cleaned_data['learning_2']
+            learning_3 = form.cleaned_data['learning_3']
+            #uploadData(user,token,"learning_1","tag1","public1","learning_2","public2","tag2","learning_3","tag3","public3")
+
+            try:
+                uploadData(user,token,learning_1,tag1,public1,learning_2,public2,tag2,learning_3,tag3,public3)
+                return redirect('my_services:my_services')
+
+            except BadHeaderError:
+                return HttpResponse('Invalid header found. ')
+                    #return redirect('contact_me:email_success')
+
+    context = {'form': form}
+    template = 'my_learn/my_learn.html'
+    return render(request, template, context)
+
+
+def my_learn0(request):
+
     try:
-        user=getUser(request)
+        user,token=getUserUp(request)
         if request.method == 'GET':
             form = ContactForm()
         else:
@@ -57,8 +120,9 @@ def my_learn(request):
                 learning_1 = form.cleaned_data['learning_1']
                 learning_2 = form.cleaned_data['learning_2']
                 learning_3 = form.cleaned_data['learning_3']
+
                 try:
-                    uploadData(user,learning_1,tag1,public1,learning_2,public2,tag2,learning_3,tag3,public3)
+                    uploadData(user,token,learning_1,tag1,public1,learning_2,public2,tag2,learning_3,tag3,public3)
                     return redirect('my_services:my_services')
 
                 except BadHeaderError:
@@ -72,51 +136,26 @@ def my_learn(request):
         return render(request,"sign_in/sign_in.html")
 
 
-def uploadData(a,learning_1,tag1,learning_2,tag2,learning_3,tag3):
+def uploadData(a,tok,learning_1,tag1,public1,learning_2,tag2,public2,learning_3,tag3,public3):
 
     h=datetime.datetime.today().strftime('%Y-%m-%d-%H-%M-%S')
     database.child('users').child(a).child(h).set({
                     'learning' : learning_1,
                     'tag' : tag1,
-                    'public' : public1})
+                    'public' : public1},tok)
     time.sleep(1)
     h=datetime.datetime.today().strftime('%Y-%m-%d-%H-%M-%S')
     database.child('users').child(a).child(h).set({
                     'learning' : learning_2,
                     'tag' : tag2,
-                    'public' : public2})
+                    'public' : public2},tok)
     time.sleep(1)
     h=datetime.datetime.today().strftime('%Y-%m-%d-%H-%M-%S')
     database.child('users').child(a).child(h).set({
                     'learning' : learning_3,
                     'tag' : tag3,
-                    'public' : public3})
+                    'public' : public3},tok)
 
-
-def get_db_data(a):
-    def get_df(u):
-	    dic_all=database.child('users').child(u).get()
-	    return pd.DataFrame.from_dict(dic_all,orient='index')
-    df=get_df(a)
-    grouped=df.groupby('tag').count()
-    return grouped
-
-
-def render_stats(df):
-    df.plot.pie('learning')
-    # Store image in a string buffer
-    buffer = BytesIO()
-    canvas = plt.get_current_fig_manager().canvas
-    canvas.draw()
-    pilImage = PIL.Image.frombytes("RGB", canvas.get_width_height(), canvas.tostring_rgb())
-    pilImage.save(buffer, "PNG")
-    pilImage.save('./my_services/static/img/my_learnings.jpg', 'JPEG')
-#    pilImage.save('/Users/elena/Documents/projects/Aprendipedia/front/sapiens_front/public/my_services/static/img/my_learnings.jpg', 'JPEG')
-    plt.close()
-    #redirect('my_services:my_services')
-
-    # Send buffer in a http response the the browser with the mime type image/png set
-    #return HttpResponse(buffer.getvalue(), content_type="image/png")
 
 
 def post_create(request):
