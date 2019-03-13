@@ -29,7 +29,9 @@ urlpatterns = [
     #path('sign_in/postsign/', include('sign_in.urls', namespace='sign_in')),
     #path('sign_up/postsignup/', include('sign_up.urls', namespace='sign_up')),
     #path('sign_all/', include('sign_all.urls', namespace='sign_all')),
+    path('my_learn/', include('my_learn.urls', namespace='my_learn')),
     path('sign_in/', include('sign_in.urls', namespace='sign_in')),
     path('sign_up/', include('sign_up.urls', namespace='sign_up')),
+    path('my_learnings/', include('my_learnings.urls', namespace='my_learnings')),
     path('admin/', admin.site.urls),
 ]

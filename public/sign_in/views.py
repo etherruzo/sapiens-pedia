@@ -24,6 +24,7 @@ config = {
     'projectId': "sapiens-1f0c9",
     'storageBucket': "sapiens-1f0c9.appspot.com",
     'messagingSenderId': "942647312753"
+
   }
 
 #cred = credentials.Certificate('../../sapiens-1f0c9-firebase-adminsdk-13qhk-c3c3c2819e.json')

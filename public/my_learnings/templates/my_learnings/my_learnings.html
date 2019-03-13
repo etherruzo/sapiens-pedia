@@ -17,14 +17,13 @@
 <title>Sign</title>
 </head>
 <body>
-<form action="/postsign/" method="post">
+<form action="postsign" method="post">
 {% csrf_token %}
 Email :
 <input type="email" name="email"><br><br>
 Password:
 <input type="password" name="pass"><br><br>
 <input type="submit" value="sign_in">
-    <button type="button" href="{% url 'sign_up' %} ">SignUp</button>
 </form>
 </body>
 </html>

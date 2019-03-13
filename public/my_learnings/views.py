@@ -32,34 +32,35 @@ default_app = pyrebase.initialize_app(config)#,options={'databaseURL': 'https://
 auth=default_app.auth()
 
 
-def sign_up(request):
 
-    return render(request,"sign_up/sign_up.html")
+def my_learnings(request):
 
-def postsignup(request):
-    name=request.POST.get('name')
-    email=request.POST.get('email')
-    passw=request.POST.get('pass')
-    user=auth.create_user_with_email_and_password(email,passw)
-    return render(request,"sign_all/sign_in.html")
+    return render(request,'my_learnings/my_learnings.html')
 
-def sign_in(request):
-    return render(request,"sign_all/sign_in.html")
 
-def postsign(request):
-    email=request.POST.get("email")
-    passw=request.POST.get("pass")
-    try:
-        user=auth.sign_in_with_email_and_password(email,passw)
-    except:
-        message="invalid credentials"
-        return render(request,"sign_all/sign_in.html",{"messg":message})
-    #return render(request,"welcome",{"e":email})
-    print(user)
-    session_id=user['idToken']
-    request.session['uid']=str(session_id)
-    return render(request,"sign_all/welcome.html",{"e":email})
+def post_create(request):
 
-def logout(request):
-    auth.logout(request)
-    return render(request,'sign_all/sign_in.html')
+    import time
+    from datetime import datetime, timezone
+    import pytz
+
+    tz= pytz.timezone('Asia/Kolkata')
+    time_now= datetime.now(timezone.utc).astimezone(tz)
+    millis = int(time.mktime(time_now.timetuple()))
+    print("mili"+str(millis))
+    work = request.POST.get('work')
+    progress =request.POST.get('progress')
+
+    idtoken= request.session['uid']
+    a = authe.get_account_info(idtoken)
+    a = a['users']
+    a = a[0]
+    a = a['localId']
+    print("info"+str(a))
+    data = {
+        "work":work,
+        'progress':progress
+    }
+    database.child('users').child(a).child('reports').child(millis).set(data)
+    name = database.child('users').child(a).child('details').child('name').get().val()
+    return render(request,'my_learnings/welcome.html', {'e':name})

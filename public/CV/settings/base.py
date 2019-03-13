@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home',
     'about_me',
     'contact_me',
+    'my_learn'
     'sign_in',
     'sign_up',
     'experience',
