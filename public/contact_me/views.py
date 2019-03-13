@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import ContactForm
 
-import firebase_admin
-from firebase_admin import db,auth,credentials
+#import firebase_admin
+#from firebase_admin import db,auth,credentials
 import datetime
 import time
 import pandas as pd
@@ -49,6 +49,15 @@ def uploadData(learning_1,tag1,learning_2,tag2,learning_3,tag3):
         #cred = credentials.Certificate('../sapiens-1f0c9-firebase-adminsdk-13qhk-c3c3c2819e.json')
         #default_app = firebase_admin.initialize_app(cred,options={                    'databaseURL': 'https://sapiens-1f0c9.firebaseio.com/'})
         #user = auth.get_user_by_email(user_name)
+        idtoken= request.session['uid']
+        a = auth.get_account_info(idtoken)
+        a = a['users']
+        a = a[0]
+        a = a['localId']
+        print("info"+str(a))
+        database.child('users').child(a).child('reports').child(millis).set(data)
+        name = data
+
         print('Successfully fetched user data: {0}'.format(user.uid))
         root = db.reference()
 
