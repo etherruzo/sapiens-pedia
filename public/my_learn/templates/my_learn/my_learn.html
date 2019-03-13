@@ -8,31 +8,40 @@
 <!-- //contact -->
 <div class="address" id="contact">
 	<div class="container">
-		<h3 class="w3l-title">What did you learn today?</h3>
+		<h3 class="w3l-title">Think about 3 things you learned today...</h3>
 		<div class="address-row">
 			<div class="col-md-6 address-left wow agile fadeInLeft animated" data-wow-delay=".5s">
 				<div class="address-grid">
-					<h4 class="wow fadeIndown animated" data-wow-delay=".5s">Fill in ...</h4>
+					<h4 class="wow fadeIndown animated" data-wow-delay=".5s">Fill in your...</h4>
 				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
                               {% csrf_token %}
 										<div class="form-group col-md-12">
-				                <textarea name="learning_1" id="learning_1"  required="required" class="form-control" rows="8" placeholder="Your Learning Here"></textarea>
+				                <textarea name="learning_1" id="learning_1"  required="required" class="form-control" rows="2" placeholder="First Learning Here"></textarea>
 				            </div>
-										<div class="form-group col-md-6">
-				                <input type="text" name="tag1" class="form-control" required="required" placeholder="tag">
+										<div class="form-group col-md-8">
+				                <input type="text" name="tag1" class="form-control" required="required" placeholder="work,leisure,personal">
 				            </div>
+                    <div class="form-group col-md-4">
+                      <input type="checkbox" name="public1" value="public1">Make public<br>
+                    </div>
 										<div class="form-group col-md-12">
-				                <textarea name="learning_2" id="learning_2"  required="required" class="form-control" rows="8" placeholder="Your Learning Here"></textarea>
+				                <textarea name="learning_2" id="learning_2"  required="required" class="form-control" rows="2" placeholder="Second Learning Here"></textarea>
 				            </div>
-										<div class="form-group col-md-6">
-				                <input type="text" name="tag2" class="form-control" required="required" placeholder="tag">
+										<div class="form-group col-md-8">
+				                <input type="text" name="tag2" class="form-control" required="required" placeholder="work,leisure,personal">
 				            </div>
+                    <div class="form-group col-md-4">
+                      <input type="checkbox" name="public2" value="public2">Make public<br>
+                    </div>
 										<div class="form-group col-md-12">
-				                <textarea name="learning_3" id="learning_3"  required="required" class="form-control" rows="8" placeholder="Your Learning Here"></textarea>
+				                <textarea name="learning_3" id="learning_3"  required="required" class="form-control" rows="2" placeholder="Third Learning Here"></textarea>
 				            </div>
-										<div class="form-group col-md-6">
-				                <input type="text" name="tag3" class="form-control" required="required" placeholder="tag">
+										<div class="form-group col-md-8">
+				                <input type="text" name="tag3" class="form-control" required="required" placeholder="work,leisure,personal">
 				            </div>
+                    <div class="form-group col-md-4">
+                      <input type="checkbox" name="public3" value="publi3">Make public<br>
+                    </div>
 				            <div class="form-group col-md-12">
 				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
 				            </div>
@@ -40,19 +49,13 @@
 				</div>
 			</div>
 			<div class="col-md-6 address-right">
-				<div class="address-info wow fadeInRight animated" data-wow-delay=".5s">
-					<h4>Address</h4>
-					<p>123 San Sebastian, Hill Towers 4567 New York City USA.</p>
+        <div class="address-info wow fadeInRight animated" data-wow-delay=".5s">
+					<h4>Are you aware of the things you learn?</h4>
+					<p>So that you may not so easily forget it...</p>
 				</div>
-				<div class="address-info address-mdl wow fadeInRight animated" data-wow-delay=".7s">
-					<h4>Phone </h4>
-					<p>+222 111 333 4444</p>
-					<p>+222 111 333 5555</p>
-				</div>
-				<div class="address-info agileits-info wow fadeInRight animated" data-wow-delay=".6s">
-					<h4>Mail</h4>
-					<p><a href="mailto:example@mail.com"> mail@example.com</a></p>
-					<p><a href="mailto:example@mail.com"> mail2@example.com</a></p>
+				<div class="address-info wow fadeInRight animated" data-wow-delay=".7s">
+					<h4>Can you help others by sharing your learnings?</h4>
+					<p>Make some of your learnings public so that others can take advantage of what it took you so hard to learn</p>
 				</div>
 			</div>
 		</div>

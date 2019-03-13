@@ -2,10 +2,6 @@ from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import ContactForm
-
-#import firebase_admin
-#from firebase_admin import credentials
-#from firebase_admin import db,auth
 import datetime
 import time
 import pandas as pd
@@ -45,49 +41,56 @@ def getUser(req):
 #    return render(request,"my_learn/my_learn.html")
 
 def my_learn(request):
-    user=getUser(request)
-    if request.method == 'GET':
-        form = ContactForm()
-    else:
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            tag1 = form.cleaned_data['tag1']
-            tag2 = form.cleaned_data['tag2']
-            tag3 = form.cleaned_data['tag3']
-            learning_1 = form.cleaned_data['learning_1']
-            learning_2 = form.cleaned_data['learning_2']
-            learning_3 = form.cleaned_data['learning_3']
-            try:
-                uploadData(user,learning_1,tag1,learning_2,tag2,learning_3,tag3)
-                #df_data=get_db_data(user)
-                #return render_stats(df_data)
-                #return HttpResponse('Succesful ')
-                return redirect('my_services:my_services')
+    try:
+        user=getUser(request)
+        if request.method == 'GET':
+            form = ContactForm()
+        else:
+            form = ContactForm(request.POST)
+            if form.is_valid():
+                public1 = form.cleaned_data['public1']
+                public2 = form.cleaned_data['public2']
+                public3 = form.cleaned_data['public3']
+                tag1 = form.cleaned_data['tag1']
+                tag2 = form.cleaned_data['tag2']
+                tag3 = form.cleaned_data['tag3']
+                learning_1 = form.cleaned_data['learning_1']
+                learning_2 = form.cleaned_data['learning_2']
+                learning_3 = form.cleaned_data['learning_3']
+                try:
+                    uploadData(user,learning_1,tag1,public1,learning_2,public2,tag2,learning_3,tag3,public3)
+                    return redirect('my_services:my_services')
 
-            except BadHeaderError:
-                return HttpResponse('Invalid header found. ')
-                #return redirect('contact_me:email_success')
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found. ')
+                    #return redirect('contact_me:email_success')
 
-    context = {'form': form}
-    template = 'my_learn/my_learn.html'
-    return render(request, template, context)
+        context = {'form': form}
+        template = 'my_learn/my_learn.html'
+        return render(request, template, context)
+    except:
+        return render(request,"sign_in/sign_in.html")
+
 
 def uploadData(a,learning_1,tag1,learning_2,tag2,learning_3,tag3):
 
     h=datetime.datetime.today().strftime('%Y-%m-%d-%H-%M-%S')
     database.child('users').child(a).child(h).set({
                     'learning' : learning_1,
-                    'tag' : tag1})
+                    'tag' : tag1,
+                    'public' : public1})
     time.sleep(1)
     h=datetime.datetime.today().strftime('%Y-%m-%d-%H-%M-%S')
     database.child('users').child(a).child(h).set({
                     'learning' : learning_2,
-                    'tag' : tag2})
+                    'tag' : tag2,
+                    'public' : public2})
     time.sleep(1)
     h=datetime.datetime.today().strftime('%Y-%m-%d-%H-%M-%S')
     database.child('users').child(a).child(h).set({
                     'learning' : learning_3,
-                    'tag' : tag3})
+                    'tag' : tag3,
+                    'public' : public3})
 
 
 def get_db_data(a):
