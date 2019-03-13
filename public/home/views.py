@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from firebase_admin import db,auth,credentials
-import firebase_admin
+#from firebase_admin import db,auth,credentials
+#import firebase_admin
 
 def home(request):
     context = {}
