@@ -34,8 +34,10 @@ auth=default_app.auth()
 
 
 def my_learnings(request):
-
-    return render(request,'my_learnings/my_learnings.html')
+    try:
+        return render(request,'my_learnings/my_learnings.html')
+    except:
+        return render(request,'sign_in/sign_in.html')
 
 
 def post_create(request):

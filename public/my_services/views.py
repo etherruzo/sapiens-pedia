@@ -43,12 +43,15 @@ def getUserUp(req):
 
 
 def my_services(request):
-    a,idtoken=getUserUp(request)
-    df_data=get_db_data(a,idtoken)
-    render_stats(df_data,a)
-    context = {}
-    template = 'my_services/my_services.html'
-    return render(request, template, context)
+    try:
+        a,idtoken=getUserUp(request)
+        df_data=get_db_data(a,idtoken)
+        render_stats(df_data,a)
+        context = {}
+        template = 'my_services/my_services.html'
+        return render(request, template, context)
+    except Exception as e:
+        return render(request,"my_learn/error.html",{"e":str(e)})
 
 
 

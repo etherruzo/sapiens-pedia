@@ -71,7 +71,11 @@ def my_learn2(request):
 
 def my_learn1(request):
 
-    user,token=getUserUp(request)
+    try:
+        user,token=getUserUp(request)
+    except Exception as e:
+        return render(request,"my_learn/error.html",{"e":str(e)})
+
 
     if request.method == 'GET':
         form = ContactForm()
@@ -133,7 +137,10 @@ def get_boolean_from_request(request, key, method='POST'):
 
 def my_learn(request):
 
-    user,token=getUserUp(request)
+    try:
+        user,token=getUserUp(request)
+    except Exception as e:
+        return render(request,"my_learn/error.html",{"e":str(e)})
 
     if request.method == 'GET':
         form = ContactForm()
