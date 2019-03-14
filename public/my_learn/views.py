@@ -69,10 +69,9 @@ def my_learn2(request):
     template = 'my_learn/my_learn.html'
     return render(request, template, context)
 
-def my_learn(request):
+def my_learn1(request):
 
     user,token=getUserUp(request)
-    uploadData(user,token,"learning_1","tag1","public1","learning_2","public2","tag2","learning_3","tag3","public3")
 
     if request.method == 'GET':
         form = ContactForm()
@@ -81,11 +80,24 @@ def my_learn(request):
         return render(request, template, context)
     else:
         form = ContactForm(request.POST)
+        uploadData(user,token,"learning_1","tag1","public1","learning_2","public2","tag2","learning_3","tag3","public3")
 
-        if form.is_valid():
-            public1 = "1"#form.cleaned_data['public1']
-            public2 = "2"#form.cleaned_data['public2']
-            public3 = "3"#form.cleaned_data['public3']
+        public1=request.POST.get("public1")
+        public2=request.POST.get("public2")
+        public3=request.POST.get("public3")
+        tag1=request.POST.get("tag1")
+        tag2=request.POST.get("tag2")
+        tag3=request.POST.get("tag3")
+        learning_1=request.POST.get("learning_1")
+        learning_2=request.POST.get("learning_2")
+        learning_3=request.POST.get("learning_3")
+        uploadData(user,token,learning_1,tag1,public1,learning_2,public2,tag2,learning_3,tag3,public3)
+
+        if form.is_valid(): #TODO
+
+            public1 = False #form.cleaned_data['public1']
+            public2 = False #form.cleaned_data['public2']
+            public3 = False #form.cleaned_data['public3']
             tag1 = form.cleaned_data['tag1']
             tag2 = form.cleaned_data['tag2']
             tag3 = form.cleaned_data['tag3']
@@ -100,6 +112,51 @@ def my_learn(request):
 
             except BadHeaderError:
                 return HttpResponse('Invalid header found. ')
+                    #return redirect('contact_me:email_success')
+
+        context = {'form': form}
+        template = 'my_services/my_services.html'
+        return render(request, template, context)
+
+def get_boolean_from_request(request, key, method='POST'):
+	" gets the value from request and returns it's boolean state "
+	value = getattr(request, method).get(key, False)
+
+	if value == 'False' or value == 'false' or value == '0' or value == 0:
+		value = False
+	elif value:
+		value = True
+	else:
+		value = False
+
+	return value
+
+def my_learn(request):
+
+    user,token=getUserUp(request)
+
+    if request.method == 'GET':
+        form = ContactForm()
+        context = {'form': form}
+        template = 'my_learn/my_learn.html'
+        return render(request, template, context)
+    else:
+        form = ContactForm(request.POST)
+        public1=get_boolean_from_request(request,"public1")
+        public2=get_boolean_from_request(request,"public2")
+        public3=get_boolean_from_request(request,"public3")
+        tag1=request.POST.get("tag1")
+        tag2=request.POST.get("tag2")
+        tag3=request.POST.get("tag3")
+        learning_1=request.POST.get("learning_1")
+        learning_2=request.POST.get("learning_2")
+        learning_3=request.POST.get("learning_3")
+        try:
+            uploadData(user,token,learning_1,tag1,public1,learning_2,tag2,public2,learning_3,tag3,public3)
+            return redirect('my_services:my_services')
+
+        except BadHeaderError:
+            return HttpResponse('Invalid header found. ')
                     #return redirect('contact_me:email_success')
 
         context = {'form': form}
