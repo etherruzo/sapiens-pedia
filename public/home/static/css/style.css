@@ -34,10 +34,12 @@ body a:hover{
 
 .banner {
 /*--     background:url('/static/images/1.jpg')no-repeat center 0px;--*/
-    background:url('/static/images/1.jpg')no-repeat center 0px;
+/*--    background:url('/static/images/1.jpg')no-repeat center 0px;--*/
+    background:url('static/img/2.jpg')no-repeat center 0px;
+
     background-size:cover;
-	position: relative;	 
-} 
+	position: relative;
+}
 /*-- header --*/
 .header {
     padding: 1em 0;
@@ -45,11 +47,11 @@ body a:hover{
 }
 .logo h1 {
     font-size: 3em;
-    color: #fff; 
+    color: #fff;
 }
 .logo h1 a{
     color: #fff;
-} 
+}
 /*-- //header --*/
 /*-- banner-text --*/
 .banner-text {
@@ -97,10 +99,10 @@ body a:hover{
 .banner-left img {
     width: 100%;
 }
-/*-- more buttons --*/ 
+/*-- more buttons --*/
 .hire-w3lgrids {
     margin-top: 2.5em;
-}  
+}
 a.wthree-more {
     padding: 0 2.5em;
     border: 1px solid #fff;
@@ -116,7 +118,7 @@ a.wthree-more {
     overflow: hidden;
     text-align: center;
     letter-spacing: 2px;
-} 
+}
 a.wthree-more > span {
 	display: inline-block;
 	padding: 1em 0;
@@ -248,7 +250,7 @@ a.wthree-more:hover > span:nth-child(10) {
     -ms-background-size: cover;
     padding: 5em 0;
 }
-/*-- //more buttons --*/ 
+/*-- //more buttons --*/
 /*-- menu-navigation --*/
 nav {
 	background-color: rgba(0, 0, 0, 0.6);
@@ -328,12 +330,12 @@ nav a:hover:after { width: 100%; }
 .open nav {
     right: 0;
 	overflow-y: auto;
-} 
+}
 .open #menuToggle span {
     background: transparent;
     left: 20%;
     top: 45%;
-} 
+}
 .open #menuToggle span:before,
 .open #menuToggle span:after {
 	background: white;
@@ -342,19 +344,19 @@ nav a:hover:after { width: 100%; }
 	-ms-transform: rotate(45deg);
 	-webkit-transform: rotate(45deg);
 	transform: rotate(45deg);
-} 
+}
 .open #menuToggle span:after {
 	-moz-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
 	-webkit-transform: rotate(-45deg);
 	transform: rotate(-45deg);
-} 
+}
 #menuToggle .navClosed {
 	-moz-transition: background 0.1s linear;
 	-o-transition: background 0.1s linear;
 	-webkit-transition: background 0.1s linear;
 	transition: background 0.1s linear;
-} 
+}
 #menuToggle .navClosed:before,
 #menuToggle .navClosed:after {
 	-moz-transition: top 0.2s linear 0.1s, -moz-transform 0.2s linear 0.1s;
@@ -362,7 +364,7 @@ nav a:hover:after { width: 100%; }
 	-webkit-transition: top 0.2s linear, -webkit-transform 0.2s linear;
 	-webkit-transition-delay: 0.1s, 0.1s;
 	transition: top 0.2s linear 0.1s, transform 0.2s linear 0.1s;
-} 
+}
 #menuToggle .navOpen {
 	-moz-transition: background 0.1s linear 0.2s;
 	-o-transition: background 0.1s linear 0.2s;
@@ -584,14 +586,14 @@ h3.w3l-title:after {
 /*-- //slider --*/
 /*-- //about --*/
 /*-- skills --*/
-.stats { 
+.stats {
 	background: url('/static/images/2.jpg')no-repeat 0px 0px fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    -ms-background-size: cover; 
-} 
+    -ms-background-size: cover;
+}
 .stats h3.w3l-title:after {
     left:44%;
 }
@@ -613,7 +615,7 @@ h3.w3l-title:after {
 	-moz-border-radius: 3px;
 	-o-border-radius: 3px;
 	-ms-border-radius: 3px;
-	border-radius: 3px; 
+	border-radius: 3px;
 }
 .skillbar-title {
     position: absolute;
@@ -978,8 +980,8 @@ animations
     background:#fff;
 }
 .accordion, .accordion * {
-	-webkit-box-sizing:border-box; 
-	-moz-box-sizing:border-box; 
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
 	box-sizing:border-box;
 }
 
@@ -1011,7 +1013,7 @@ animations
 	border-bottom: none;
 }
 .accordion-section-content.open{
-    border-top: 1px solid #cacaca;	
+    border-top: 1px solid #cacaca;
 }
 .accordion-section-content {
     padding: 15px 15px;
@@ -1052,7 +1054,7 @@ a.accordion-section-title span {
 }
 .accordion-section ul li a{
     color: #464646;
-	text-decoration:none;	
+	text-decoration:none;
     font-size: 15px;
 }
 .accordion-section ul li span {
@@ -1317,7 +1319,7 @@ a.accordion-section-title span {
 	bottom: 24px;
 	right: 1%;
 	overflow: hidden;
-	z-index: 999; 
+	z-index: 999;
     width: 64px;
     height: 64px;
 	border: none;
@@ -1344,8 +1346,8 @@ a.accordion-section-title span {
 
 }
 @media(max-width: 1440px){
-	#menuToggle { 
-		right: 16%; 
+	#menuToggle {
+		right: 16%;
 	}
 }
 @media(max-width: 1366px){
@@ -1685,7 +1687,7 @@ a.accordion-section-title span {
 	#menuToggle {
 		right: 9%;
 		top: 13px;
-	} 
+	}
 	nav a {
 		font-size: 1.2em;
 		margin: 26px 0 25px 25px;
@@ -1850,9 +1852,9 @@ a.accordion-section-title span {
 	}
 }
 @media(max-width: 480px){
-	#menuToggle { 
-		height: 36px; 
-		width: 42px; 
+	#menuToggle {
+		height: 36px;
+		width: 42px;
 	}
 	nav {
 		width: 172px;
