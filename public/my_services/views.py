@@ -45,7 +45,7 @@ def getUserUp(req):
 def my_services(request):
     a,idtoken=getUserUp(request)
     df_data=get_db_data(a,idtoken)
-    render_stats(df_data)
+    render_stats(df_data,a)
     context = {}
     template = 'my_services/my_services.html'
     return render(request, template, context)
@@ -73,7 +73,7 @@ def get_db_data(local_id,token):
     return grouped
 
 
-def render_stats(df):
+def render_stats(df,user):
     df.plot.pie('learning')
     # Store image in a string buffer
     buffer = BytesIO()
@@ -81,7 +81,7 @@ def render_stats(df):
     canvas.draw()
     pilImage = PIL.Image.frombytes("RGB", canvas.get_width_height(), canvas.tostring_rgb())
     pilImage.save(buffer, "PNG")
-    pilImage.save('./my_services/static/img/my_learnings.jpg', 'JPEG')
+    pilImage.save('./my_services/static/img/my_learnings_'+user+'.jpg', 'JPEG')
 #    pilImage.save('/Users/elena/Documents/projects/Aprendipedia/front/sapiens_front/public/my_services/static/img/my_learnings.jpg', 'JPEG')
     plt.close()
     #redirect('my_services:my_services')
