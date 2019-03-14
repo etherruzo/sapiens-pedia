@@ -81,7 +81,7 @@ def render_stats(df,user):
     canvas.draw()
     pilImage = PIL.Image.frombytes("RGB", canvas.get_width_height(), canvas.tostring_rgb())
     pilImage.save(buffer, "PNG")
-    pilImage.save('./my_services/static/img/my_learnings_'+user+'.jpg', 'JPEG')
+    pilImage.save('./my_services/static/img/my_learnings.jpg', 'JPEG')
 #    pilImage.save('/Users/elena/Documents/projects/Aprendipedia/front/sapiens_front/public/my_services/static/img/my_learnings.jpg', 'JPEG')
     plt.close()
     #redirect('my_services:my_services')
