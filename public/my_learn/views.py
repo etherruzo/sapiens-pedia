@@ -72,8 +72,13 @@ def my_learn2(request):
 def my_learn(request):
 
     user,token=getUserUp(request)
+    uploadData(user,token,"learning_1","tag1","public1","learning_2","public2","tag2","learning_3","tag3","public3")
+
     if request.method == 'GET':
         form = ContactForm()
+        context = {'form': form}
+        template = 'my_learn/my_learn.html'
+        return render(request, template, context)
     else:
         form = ContactForm(request.POST)
 
@@ -87,7 +92,7 @@ def my_learn(request):
             learning_1 = form.cleaned_data['learning_1']
             learning_2 = form.cleaned_data['learning_2']
             learning_3 = form.cleaned_data['learning_3']
-            #uploadData(user,token,"learning_1","tag1","public1","learning_2","public2","tag2","learning_3","tag3","public3")
+            uploadData(user,token,"learning_1","tag1","public1","learning_2","public2","tag2","learning_3","tag3","public3")
 
             try:
                 uploadData(user,token,learning_1,tag1,public1,learning_2,public2,tag2,learning_3,tag3,public3)
@@ -97,9 +102,9 @@ def my_learn(request):
                 return HttpResponse('Invalid header found. ')
                     #return redirect('contact_me:email_success')
 
-    context = {'form': form}
-    template = 'my_learn/my_learn.html'
-    return render(request, template, context)
+        context = {'form': form}
+        template = 'my_services/my_services.html'
+        return render(request, template, context)
 
 
 def my_learn0(request):
