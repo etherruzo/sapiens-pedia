@@ -1,5 +1,5 @@
-conf/*
-front/conf/*
+conf/*.py
+front/conf/*.py
 keyfiles/
 keyfiles/*
 *.json
