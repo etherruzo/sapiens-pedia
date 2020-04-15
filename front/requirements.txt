@@ -169,7 +169,7 @@ tqdm==4.26.0
 traitlets==4.3.2
 Unidecode==1.0.22
 uritools==2.2.0
-urllib3==1.24.1
+urllib3==1.24.2
 wcwidth==0.1.7
 webencodings==0.5.1
 Werkzeug==0.14.1
