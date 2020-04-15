@@ -148,6 +148,8 @@ def my_learn(request):
         learning_3=request.POST.get("learning_3")
         try:
             uploadData(user,token,learning_1,tag1,public1,learning_2,tag2,public2,learning_3,tag3,public3)
+
+
             return redirect('my_stats:my_stats')
 
         except BadHeaderError:

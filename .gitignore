@@ -1,4 +1,5 @@
 conf/*
+front/conf/*
 keyfiles/
 keyfiles/*
 *.json
