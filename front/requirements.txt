@@ -1,3 +1,9 @@
+conf
+image
+matplotlib
+pandas
+pyrebase
+django
 absl-py==0.5.0
 agate==1.6.1
 agate-dbf==0.2.0

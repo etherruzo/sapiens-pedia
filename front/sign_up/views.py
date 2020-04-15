@@ -19,9 +19,8 @@ import pyrebase
 from conf import conf
 
 config=conf.config
-
 default_app = pyrebase.initialize_app(config)#,options={'databaseURL': 'https://sapiens-1f0c9.firebaseio.com/'})
-auth=default_app.auth()
+auth = default_app.auth()
 
 def sign_up(request):
 
