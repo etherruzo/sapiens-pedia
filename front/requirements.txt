@@ -99,7 +99,7 @@ mkl-random==1.0.1
 more-itertools==4.3.0
 mpld3==0.3
 msgpack==0.6.1
-nbconvert==5.4.0
+nbconvert==6.3.0
 nbformat==4.4.0
 networkx==2.2
 nltk==3.3
